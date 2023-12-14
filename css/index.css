@@ -1,101 +1,182 @@
-.main{
-    background-color: white;
+/*导航栏*/
+.head {
+    position: fixed;
+    top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1040px;
-    width: 1503px;
-    position:relative ;
+    width: 100%;
+    height: 60px;
+    background-color: #e7ac3e;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+    transition: transform 0.3s ease; /* 添加过渡效果 */
+}
+
+.header {
+    line-height: 1.5;
+    text-align: right;
+    width: 95%; /* 调整为 60% 以给左边留出空间 */
+    display: flex;
+    justify-content: space-between; /* 左右对齐 */
+    align-items: center;
+}
+
+.left-links {
+    display: flex;
+    align-items: center;
+}
+
+.right-links {
+    display: flex;
+    align-items: center;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+/*推荐商品动窗*/
+.recommended-products {
+    width: 1000px; /* 调整为你希望的宽度 */
+    margin: auto; /* 水平居中 */
+    overflow: hidden;
+    position: relative;
+}
+
+.product-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.product-card {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(189, 217, 236, 0.7); /* 使用 rgba 设置半透明背景颜色 */
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transform: translateY(-50%);
+    border-radius: 50%; /* 使按钮呈现圆形 */
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+}
+
+.slider-btn:hover {
+    background-color: rgba(52, 152, 219, 1); /* 更明亮的背景颜色 */
+}
+
+
+.prev {
+    left: 10px;
+    z-index: 2; /* 调整为适当的值 */
+}
+
+.next {
+    right: 10px;
+    z-index: 2; /* 调整为适当的值 */
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 主体 */
+.main {
+    background-color: white;
+    position: relative;
     border: 1px rgb(224, 224, 224) solid;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    margin: 0 auto; /* 水平居中对齐 */
+    width: 100%; 
+    max-width: 1500px; /* 最大宽度为1200px，根据需要调整 */
 }
-.head{
-    border: 1px rgb(224, 224, 224) solid;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    margin: auto;
-    top: 0;
+
+/* 侧边菜单 */
+.menu {
+    position: absolute;
     left: 0;
-    height: 40px;
-    width: 1503px;
-    background-color: white;
+    top: 45px;
+    height: 800px;
+    width: 20%; /* 菜单宽度为20% */
+    background-color: #e7ac3e;
+    padding-top: 20px;
 }
-.header{
-    top: 0;
-    left: 0;
-    margin-left: 1100px;
-    line-height: 40px;
-    height: 40px;
-    text-align: left;
-    margin-bottom: 5px;
-    width: 400px;
-}
-.header a{
-    color: black;
+
+.menu a {
+    display: block;
+    padding: 15px;
+    color: #ecf0f1;
     text-decoration: none;
-    margin-left: 10px;
-    margin-right: 10px;
+    transition: background-color 0.3s ease;
 }
-.navbar{
+
+.menu a:hover {
+    background-color: #34495e;
+}
+
+/* 内容区域 */
+.content {
     position: absolute;
-    left: 0;
-    top:0;
-    height: 150px;
-    width: 1502px;
-    background-color: white;
-}
-.navbar img{
-    margin-top: 25px;
-    margin-left: 300px;
-    height: 100px;
-    width: 100px;
-}
-.menu{
-    position: absolute;
-    left: 0;
-    top: 145px;
+    left: 20%; /* 与菜单宽度相对应 */
+    top: 45px;
+    /* border: 1px rgb(224, 224, 224) solid; */
     height: 800px;
-    width: 200px;
-    background-color: white
-}
-.content{
-    position: absolute;
-    left: 249px;
-    top: 145px;
-    border: 1px rgb(224, 224, 224) solid;
-    height: 800px;
-    width: 1000px;
+    width: 80%; /* 内容宽度为80% */
     background-color: white;
     display: grid;
-    grid-template-columns: 250px 250px 250px 250px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px; /* 设置列之间的间隔 */
 }
-.sidebar{
-    position: absolute;
-    left: 1298px;
-    top: 145px;
-    height: 800px;
-    width: 200px;
-    background-color: white;
-}
-.footer{
+
+/* 尾部栏样式 */
+.footer {
     position: absolute;
     left: 0;
     top: 980px;
-    height: 25px;
-    width: 1503px;
-    clear:both;
-    margin-top: 20px;
+    height: 40px; /* 调整高度 */
+    width: 100%; /* 修改为100%以占满整个屏幕宽度 */
+    background-color: #2c3e50; /* 添加背景颜色 */
+    color: #ecf0f1; /* 文字颜色 */
     text-align: center;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid #34495e; /* 添加上边框，用于区分与主区域 */
 }
-.footer a{
-    font-size: 12px;
+
+.footer a {
+    font-size: 14px; /* 调整字体大小 */
     text-decoration: none;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0 10px; /* 修改左右外边距 */
+    color: #ecf0f1; /* 文字颜色 */
 }
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* 药品样式 */
 .yp{
     width: 250px;
     height: 280px;
@@ -113,6 +194,7 @@
 .yp a{
     text-decoration: none;
 }
+
 .notice{
     text-align: center;
     width: 400px;

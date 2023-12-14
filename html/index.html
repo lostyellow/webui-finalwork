@@ -9,29 +9,56 @@
 <body>
     <div class="head">
         <div class="header">
-          <a href="index.html">首页</a>
-          <a href="back_stage.html">进入后台</a>
-          
-          <!--这里判断是否有用户登录，有用户登录则显示登录链接，否则显示注册和退出登录链接-->
-          <a href="login.html">登录</a>
+            <div class="left-links">
+                <a href="index.html">首页</a>
+                <a href="back_stage.html">进入后台</a>
+            </div>
+            <div class="right-links">
+                <!--这里判断是否有用户登录，有用户登录则显示登录链接，否则显示注册和退出登录链接-->
+                <a href="login.html">登录</a>
 
-          <a href="register.html">注册</a>
-          <a href="QuitServlet">退出登录</a>
-          
+                <a href="register.html">注册</a>
+                <a href="QuitServlet">退出登录</a>
+            </div>
         </div>
     </div>   
-    <div class="main">
-            <div class="navbar">
-                <img src="../img/Xbro.png">
+
+    <div class="recommended-products">
+        <button class="slider-btn prev" onclick="prevSlide()">❮</button>
+        <div class="product-slider">
+            <!-- 推荐商品卡片，可以根据需要复制多个 -->
+            <div class="product-card">
+                <a href="#">
+                    <img src="../img/product1.jpg" alt="Product 1">
+                </a>
             </div>
-            <div class="menu"></div>
+            <div class="product-card">
+                <a href="#">
+                    <img src="../img/product2.jpg" alt="Product 2">
+                </a>
+            </div>
+            <div class="product-card">
+                <a href="#">
+                    <img src="../img/product3.jpg" alt="Product 3">
+                </a>
+            </div>
+
+            <!-- 添加更多推荐商品卡片... -->
+        </div>
+        <button class="slider-btn next" onclick="nextSlide()">❯</button>
+    </div>
+
+    <div class="main">
+            <div class="menu">
+                <a href="#">处方药</a>
+                <a href="#">非处方药</a>
+            </div>
             <div class="content">
                 <div class="yp">
-                    <a href="ShowGoodsDetail?id=<%=Integer.toString(g.getId())%>"><img src="../img/yp.png"></a>
-                    <a href="ShowGoodsDetail?id=<%=Integer.toString(g.getId())%>"><p>药品1</p></a>
+                    <a href="#"><img src="../img/yp.png"></a>
+                    <a href="#"><p>药品1</p></a>
                 </div>
             </div>
-            <div class="sidebar"></div>
             <div class="footer">
                 <a href="#">关于我们</a>
                 <a href="#">联系我们</a>
@@ -40,4 +67,41 @@
             </div>
     </div>
 </body>
+<!-- 推荐商品切换 -->
+<script>
+    var currentIndex = 0;
+    var totalProducts = document.querySelectorAll('.product-card').length;
+    var productSlider = document.querySelector('.product-slider');
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalProducts) % totalProducts;
+        updateSlider();
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalProducts;
+        updateSlider();
+    }
+
+    function updateSlider() {
+        var translateValue = -currentIndex * 100 + '%';
+        productSlider.style.transform = 'translateX(' + translateValue + ')';
+    }
+</script>
+<!-- 导航栏跟随 -->
+<script>
+    let prevScrollPos = window.pageYOffset;
+
+    window.onscroll = function() {
+        const currentScrollPos = window.pageYOffset;
+
+        if (prevScrollPos > currentScrollPos) {
+            document.querySelector('.head').style.transform = 'translateY(0)';
+        } else {
+            document.querySelector('.head').style.transform = 'translateY(-60px)';
+        }
+
+        prevScrollPos = currentScrollPos;
+    }
+</script>
 </html>
