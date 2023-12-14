@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link tyoe="text/css" rel="stylesheet" href="information.css">
+    <link type="text/css" rel="stylesheet" href="/css/new-information.css">
 </head>
 
 <body>
@@ -17,39 +17,110 @@
         </div>
     </div>   
     <div class="main">
-            <div class="navbar">
-                <img src="./img/Xbro.png">
+        <div class="navbar">
+            <button onclick="prevImage()" class="arrow-button">&#8249;</button>
+            <img id="mainImage" src="/img/tongrentang1.jpg" alt="Main Image">
+            <button onclick="nextImage()" class="arrow-button">&#8250;</button>
+        </div>
+        <div class="menu"></div>
+        <div class="content">
+            <div class="shop">
+                <span>店名</span>
             </div>
-            <div class="menu"></div>
-            <div class="content">
-                <div class="shop" >
-                    <span>店名</span>
+            <div class="yp">
+                <div class="discribe">
+                    <p>商品名称:同仁堂胶原蛋白</p>
+                    <p>商品描述:</p>
+                    <p>商品生产批次:</p>
+                    <p>商品有效期:</p>
+                    <p>商品是否为处方药：<input type="radio" name="option1"disabled>是<input type="radio" name="option1" checked>否</p>
+                    <p>商品价格:</p>
+                    <p>商品是否被冻结：<input type="radio" name="option2" disabled>是<input type="radio" name="option2" checked >否</p>
+                    <a href="#"><button>购买</button></a>
                 </div>
-                <div class="yp">
-                    <div class="photo">
-                        <img src="./img/yp.png">
-                    </div>
-                    <div class="discribe">
-                        <p>商品名称:</p>
-                        <p>商品描述:</p>
-                        <p>商品生产批次:</p>
-                        <p>商品有效期:</p>
-                        <p>商品是否为处方药：<input type="radio" name="option1"disabled>是<input type="radio" name="option1" checked>否</p>
-                        <p>商品价格:</p>
-                        <p>商品是否被冻结：<input type="radio" name="option2" disabled>是<input type="radio" name="option2" checked >否</p>
-                        <a href="#"><button>购买</button></a>
-                    </div>
-                </div>
-    
             </div>
-            <div class="sidebar"></div>
-            <div class="footer">
-                <a href="#">关于我们</a>
-                <a href="#">联系我们</a>
-                <a href="#">隐私政策</a>
-                <a href="#">公益活动</a>
-            </div>
+        </div>
+        <div class="sidebar"></div>
+        <div class="footer">
+            <a href="#">关于我们</a>
+            <a href="#">联系我们</a>
+            <a href="#">隐私政策</a>
+            <a href="#">公益活动</a>
+        </div>
     </div>
+
+    <script>
+        // JavaScript for image auto-switching and floating window
+
+        // List of image URLs
+        const imageUrls = [
+            "/img/tongrentang1.jpg",
+            "/img/product2.jpg",
+            "/img/product3.jpg",
+            "/img/product4.jpg",
+            "/img/product5.jpg"
+            // Add more image URLs as needed
+        ];
+
+        // Reference to the image element
+        const mainImage = document.getElementById("mainImage");
+
+        // Index to track the current image
+        let currentIndex = 0;
+
+        // Function to switch images automatically
+        function autoSwitchImage() {
+            // Change the image source
+            mainImage.src = imageUrls[currentIndex];
+
+            // Increment the index or reset to 0 if it's the last image
+            currentIndex = (currentIndex + 1) % imageUrls.length;
+        }
+
+        // Set an interval to call the autoSwitchImage function every 3000 milliseconds (3 seconds)
+        setInterval(autoSwitchImage, 3000);
+
+        // Function to show the previous image
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+            mainImage.src = imageUrls[currentIndex];
+        }
+
+        // Function to show the next image
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % imageUrls.length;
+            mainImage.src = imageUrls[currentIndex];
+        }
+    </script>
+    
+    <style>
+        .arrow-button {
+            font-size: 24px;
+            background-color: transparent;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .navbar {
+            position: relative;
+        }
+
+        .arrow-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .arrow-button:first-child {
+            left: 10px;
+        }
+
+        .arrow-button:last-child {
+            right: 10px;
+        }
+    </style>
 
 </body>
 </html>

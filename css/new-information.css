@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 使内容铺满整个视口 */
+}
+
+.head {
+    background-color: #ADD8E6;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.header a {
+    color: #0a0a0a;
+    text-decoration: none;
+    padding: 10px 20px; /* 调整导航栏链接的内边距 */
+    transition: background-color 0.3s; /* 添加过渡效果 */
+}
+
+.header a:hover {
+    background-color: #93B5C6; /* 鼠标悬停时的背景颜色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加下沉效果 */
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    flex: 1; /* 使内容占据剩余空间 */
+}
+
+.navbar img {
+    width: 100%;
+    max-width: 200px; /* 调整最大宽度 */
+}
+
+.menu {
+    /* Add your menu styles here */
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.shop {
+    background-color: #e44d26;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.yp {
+    display: flex;
+    margin-top: 20px;
+}
+
+.photo {
+    margin-right: 20px;
+}
+
+.photo img {
+    width: 100%;
+    max-width: 1000px; /* 调整最大宽度 */
+}
+
+.discribe p {
+    margin: 5px 0;
+}
+
+.discribe button {
+    background-color: #e44d26;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.sidebar {
+    /* Add your sidebar styles here */
+}
+
+.footer {
+    color: #000000;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    margin-top: auto; /* 将footer置底 */
+}
+
+.footer a {
+    color: #000000;
+    text-decoration: none;
+}
+
+/* 添加竖线样式 */
+.footer a:not(:last-child) {
+    border-right: 1px solid #000000;
+    padding-right: 10px;
+    margin-right: 10px;
+}
