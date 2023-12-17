@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <div class="head">
+    <div class="head" id="navbar">
         <div class="header">
             <div class="left-links">
                 <a href="index.html">首页</a>
                 <a href="back_stage.html">进入后台</a>
             </div>
             <div class="right-links">
-                <!--这里判断是否有用户登录，有用户登录则显示登录链接，否则显示注册和退出登录链接-->
-                <a href="login.html">登录</a>
-
-                <a href="register.html">注册</a>
-                <a href="QuitServlet">退出登录</a>
+                <!-- 这里判断是否有用户登录，有用户登录则显示登录链接，否则显示注册和退出登录链接 -->
+                <a id="loginLink" href="login.html">登录</a>
+                <a id="registerLink" href="register.html">注册</a>
+                <a id="logoutLink" href="QuitServlet" style="display: none;">退出登录</a>
             </div>
         </div>
     </div>   
@@ -49,24 +48,91 @@
     </div>
 
     <div class="main">
-            <div class="menu">
-                <a href="#">处方药</a>
-                <a href="#">非处方药</a>
-            </div>
-            <div class="content">
-                <div class="yp">
-                    <a href="#"><img src="../img/yp.png"></a>
-                    <a href="#"><p>药品1</p></a>
-                </div>
-            </div>
-            <div class="footer">
-                <a href="#">关于我们</a>
-                <a href="#">联系我们</a>
-                <a href="#">隐私政策</a>
-                <a href="#">公益活动</a>
-            </div>
+        <div class="menu">
+            <a href="#" onclick="showPrescription()">处方药</a>
+            <a href="#" onclick="showNonPrescription()">非处方药</a>
+        </div>
+        <div class="content" id="contentPrescription">
+            <!-- 药品内容将在这里动态生成 -->
+        </div>
+        <!-- 另外一个内容块，初始时设为隐藏 -->
+        <div class="content" id="contentNonPrescription" style="display: none;">
+            <!-- 药品内容将在这里动态生成 -->
+        </div>
+        <div class="footer">
+            <a href="#">关于我们</a>
+            <a href="#">联系我们</a>
+            <a href="#">隐私政策</a>
+            <a href="#">公益活动</a>
+        </div>
     </div>
 </body>
+<!-- 导航栏 -->
+<script>
+    var navbar = document.getElementById('navbar');
+    var isHovered = false;
+
+    // 鼠标经过导航栏时标记为hovered
+    navbar.addEventListener('mouseover', function() {
+        isHovered = true;
+        showNavbar();
+    });
+
+    // 鼠标离开导航栏时标记为非hovered
+    navbar.addEventListener('mouseout', function() {
+        isHovered = false;
+        hideNavbar();
+    });
+
+    // 当鼠标离开导航栏后，经过网页上方时显示导航栏
+    document.addEventListener('mousemove', function(event) {
+        if (!isHovered && event.clientY <= 10) {
+            showNavbar();
+        }
+    });
+
+    // 定时检查鼠标是否在导航栏上，根据标记显示或隐藏导航栏
+    setInterval(function() {
+        if (!isHovered) {
+            hideNavbar();
+        }
+    }, 2000); // 2000毫秒（2秒）未经过导航栏则隐藏
+
+    // 显示导航栏
+    function showNavbar() {
+        navbar.style.transform = 'translateY(0)';
+    }
+
+    // 隐藏导航栏
+    function hideNavbar() {
+        navbar.style.transform = 'translateY(-100%)';
+    }
+</script>
+<!-- 登录检测 -->
+<script>
+    // 在登录成功后调用此函数
+    function setLoggedInCookie() {
+        document.cookie = "loggedIn=true; path=/";
+    }
+    // 检查是否已登录
+    function checkLoginStatus() {
+        var loggedIn = document.cookie.indexOf("loggedIn=true") !== -1;
+        
+        // 根据登录状态显示相应的链接
+        if (loggedIn) {
+            document.getElementById("loginLink").style.display = "none";
+            document.getElementById("registerLink").style.display = "none";
+            document.getElementById("logoutLink").style.display = "inline";
+        } else {
+            document.getElementById("loginLink").style.display = "inline";
+            document.getElementById("registerLink").style.display = "inline";
+            document.getElementById("logoutLink").style.display = "none";
+        }
+    }
+    
+    // 在页面加载时调用检查登录状态的函数
+    window.onload = checkLoginStatus;
+</script>
 <!-- 推荐商品切换 -->
 <script>
     var currentIndex = 0;
@@ -103,5 +169,64 @@
 
         prevScrollPos = currentScrollPos;
     }
+</script>
+<!-- 侧边栏切换内容 -->
+<script>
+    // JavaScript 代码，用于切换显示的内容和动态生成药品内容
+    function showPrescription() {
+        document.getElementById('contentPrescription').style.display = 'grid';
+        document.getElementById('contentNonPrescription').style.display = 'none';
+        generateDrugContent('contentPrescription',presDrugData);
+    }
+
+    function showNonPrescription() {
+        document.getElementById('contentPrescription').style.display = 'none';
+        document.getElementById('contentNonPrescription').style.display = 'grid';
+        generateDrugContent('contentNonPrescription',nonPresDrugData);
+    }
+
+    function generateDrugContent(containerId,drugData) {
+        var container = document.getElementById(containerId);
+
+        // 清空容器内容，以便重新生成
+        container.innerHTML = '';
+
+        // 遍历药品数据，生成对应的 HTML 结构并添加到容器中
+        drugData.forEach(function (drug) {
+            var drugDiv = document.createElement('div');
+            drugDiv.className = 'yp';
+
+            var drugLink = document.createElement('a');
+            drugLink.href = drug.link;
+
+            var drugImage = document.createElement('img');
+            drugImage.src = drug.imageSrc;
+
+            var drugName = document.createElement('p');
+            drugName.textContent = drug.name;
+
+            drugLink.appendChild(drugImage);
+            drugLink.appendChild(drugName);
+            drugDiv.appendChild(drugLink);
+
+            container.appendChild(drugDiv);
+        });
+    }
+
+    // 模拟药品数据，实际应从后端或其他数据源获取
+    var presDrugData = [
+        { name: '药品1', imageSrc: '../img/product1.jpg', link: '#' },
+        { name: '药品2', imageSrc: '../img/product2.jpg', link: '#' },
+        // 添加更多药品数据
+    ];
+    var nonPresDrugData = [
+        { name: '药品3', imageSrc: '../img/product3.jpg', link: '#' },
+        { name: '药品4', imageSrc: '../img/product4.jpg', link: '#' },
+        // 添加更多药品数据
+    ];
+
+    // 初始时生成药品内容
+    generateDrugContent('contentPrescription',presDrugData);
+    generateDrugContent('contentNonPrescription',nonPresDrugData);
 </script>
 </html>
