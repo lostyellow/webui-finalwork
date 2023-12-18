@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<link tyoe="text/css" rel="stylesheet" href="../css/back-stage.css">
+<link tyoe="text/css" rel="stylesheet" href="back-stage.css">
 </head>
 
 <body>
@@ -18,74 +18,247 @@
     </div>   
     <div class="main">
             <div class="navbar">
-                <img src="../img/Xbro.png">
-            </div>
-            <div class="menu"></div>
-            <div class="content">
                 <div class="shop" >
                     <span>店名</span><a href="record.html">查看历史记录</a>
                 </div>
-                <div class="yp">
-                   
-                    <img src="../img/yp.png">
-                    
+            </div>
+            <div class="menu" id="menu">
+                <p><a href="#" onclick="showDiv('div0')">上架商品</a></p>
+                <p><a href="#" id="link1" onclick="showDiv('div1')">商品一</a></p>
+                <p><a href="#" id="link2" onclick="showDiv('div2')">商品二</a></p>
+                <p><a href="#" id="link3" onclick="showDiv('div3')">商品三</a></p>
+                <p><a href="#" id="link4" onclick="showDiv('div4')">商品四</a></p>
+            </div>
+            <div class="content" id="content">
+                <div id="div1" class="yp">
+                    <img src="./img/yp.png">
                     <div class="discribe">
                         <form>
-                            <p>商品名称:</p>
-                            <p>商品描述:</p>
-                            <p>商品生产批次:</p>
-                            <p>商品有效期:</p>
-                            <p>商品是否为处方药：
-                            <input type="radio" name="option1" checked disabled>是<input type="radio" name="option1" disabled>否
-                                    <input type="radio" name="option1" disabled>是<input type="radio" name="option1" checked disabled>否
-                            </p>
-                            <p>商品价格:</p>
-                            <p>商品是否被冻结：
-                                    <input type="radio" name="option2" checked disabled>是<input type="radio" name="option2" disabled>否
-                                    <input type="radio" name="option2" disabled>是<input type="radio" name="option2" checked disabled>否</p>
-                        <input type="button" value="修改" onclick="openDialog()">
-                        <input type="submit" formaction="DeleteGoodServlet" value="下架">
-                    </form>
-                    </div>
-               
-                    <dialog id="dialog">
-                        <form action="#" method="post">
-                            <p>商品名称:<input type="text" name="name" ></p>
-                            <p>商品描述:<input type="text" name="detail" ></p>
-                            <p>商品生产批次:<input type="text" name="batch" ></p>
-                            <p>商品有效期:<input type="date" name="date" ></p>
-                            <p>商品是否为处方药：<input type="radio" name="option3" value="yes">是<input type="radio" name="option3" value="no">否</p>
-                            <p>商品价格:<input type="text" name="price"></p>
-                            <input type="submit" value="提交">
-                            <button onclick="closeDialog()">取消</button> 
+                            <p>商品名称:商品一</p>
+                            <p>商品描述:商品一</p>
+                            <p>商品生产批次:1</p>
+                            <p>商品有效期:1年</p>
+                            <p>商品是否为处方药:是</p>
+                            <p>商品价格:100元</p>
+                            <input type="button" value="修改" onclick="showDialog('div1')">
+                            <input type="button" value="下架" onclick="hide('link1', 'div1')">
                         </form>
-                      </dialog> 
-                        <script> function openDialog() { 
-                          var dialog = document.getElementById("dialog"); 
-                          dialog.style.display = 'block';
-                        } 
-                          function closeDialog() { 
-                            var dialog = document.getElementById("dialog"); 
-                        dialog.style.display = 'none'; 
-                      } 
-                      </script>
-                      <!--
-                    <a href=""><div class="tianjia"></a>
-                        
                     </div>
-                    
-                    <div class="discribe2">
-                        <p>商品名称:<input type="text" name="name" disabled></p>
-                        <p>商品描述:<input type="text" name="detail" disabled></p>
-                        <p>商品生产批次:<input type="text" name="batch" disabled></p>
-                        <p>商品有效期:<input type="text" name="date" disabled></p>
-                        <p>商品是否为处方药：<input type="radio" name="option3"disabled>是<input type="radio" name="option3" disabled>否</p>
-                        <p>商品价格:</p>
-                        <p>商品是否被冻结：<input type="radio" name="option4" disabled>是<input type="radio" name="option4" disabled>否</p>
-                        <input type="submit" value="上架">
-                    </div>
-                -->
                 </div>
+                <div id="div2" class="yp">
+                    <img src="./img/yp.png">
+                    <div class="discribe">
+                        <form>
+                            <p>商品名称:商品二</p>
+                            <p>商品描述:商品二</p>
+                            <p>商品生产批次:2</p>
+                            <p>商品有效期:1年</p>
+                            <p>商品是否为处方药:是</p>
+                            <p>商品价格:200元</p>
+                            <input type="button" value="修改" onclick="showDialog('div2')">
+                            <input type="button" value="下架" onclick="hide('link2','div2')">
+                         </form>
+                    </div>
+                </div>
+                <div id="div3" class="yp">
+                    <img src="./img/yp.png">
+                    <div class="discribe">
+                        <form>
+                            <p>商品名称:商品三</p>
+                            <p>商品描述:商品三</p>
+                            <p>商品生产批次:3</p>
+                            <p>商品有效期:1年</p>
+                            <p>商品是否为处方药:是</p>
+                            <p>商品价格:300元</p>
+                            <input type="button" value="修改" onclick="showDialog('div3')">
+                            <input type="button" value="下架" onclick="hide('link3','div3')">
+                        </form>
+                    </div>
+                </div>
+                <div id="div0" class="yp">
+                    <img src="./img/yp.png">
+                    <div class="discribe">
+                        <form>
+                            <p>商品名称:<input type="text" id="name"></p>
+                            <p>商品描述:<input type="text" id="description"></p>
+                            <p>商品生产批次:<input type="text" id="batch"></p>
+                            <p>商品有效期:<input type="text" id="date"></p>
+                            <p>商品是否为处方药：
+                            <input type="radio" name="option" id="option1">是<input type="radio" name="option" id="option2">否</p>
+                            <p>商品价格:<input type="text" id="price"></p>
+                            <input type="button" value="上架" onclick="addDiv()">
+                        </form>
+                    </div>
+                </div>
+                <dialog id="dialog">
+                    <form>
+                        <p>商品名称:<input type="text" id="name2"></p>
+                        <p>商品描述:<input type="text" id="description2"></p>
+                        <p>商品生产批次:<input type="text" id="batch2"></p>
+                        <p>商品有效期:<input type="text" id="date2"></p>
+                        <p>商品是否为处方药：
+                        <input type="radio" name="option" id="option3">是<input type="radio" name="option" id="option4">否</p>
+                        <p>商品价格:<input type="text" id="price2"></p>
+                        <input type="button" id= "button"value="完成" >
+                        <input type="button" value="取消" onclick="cancel()">
+                    </form>
+                </dialog>
+                <script>  
+                    function showDiv(id) {  
+                        var divs = ['div0','div1', 'div2', 'div3', 'div4'];  
+                        for (var i = 0; i < divs.length; i++) {  
+                            var div = document.getElementById(divs[i]);  
+                            if (id === divs[i]) {  
+                                div.style.display = 'block';  
+                            } else {  
+                            div.style.display = 'none';  
+                        }  
+                      }  
+                    }
+                    function hide(linkId,divId) {  
+                        var div = document.getElementById(divId);  
+                        var link = document.getElementById(linkId);
+                        div.style.display = 'none';  
+                        link.style.display = 'none';
+                    }        
+                    function addDiv() {  
+                        var newDiv = document.createElement('div');  
+                        newDiv.id = 'div' + (parseInt(document.getElementById('div3').id.replace('div', '')) + 1);  
+                        newDiv.classList.add('yp');  
+                        newDiv.style.display = 'none';  
+
+                        var img = document.createElement('img');  
+                        img.src = './img/yp.png';  
+                        newDiv.appendChild(img);  
+                        
+                        var discribeDiv = document.createElement('div');  
+                        discribeDiv.classList.add('discribe');  
+                        
+                        var form = document.createElement('form');  
+                        
+                        var input1 = document.getElementById('name');
+                        var name=input1.value;
+                        var p1 = document.createElement('p');  
+                        p1.textContent = '商品名称:' + name;  
+                        form.appendChild(p1);  
+                        
+                        var input2 = document.getElementById('description');
+                        var description=input2.value;
+                        var p1 = document.createElement('p');  
+                        p1.textContent = '商品描述:' + description;  
+                        form.appendChild(p1);  
+                        
+                        var input3 = document.getElementById('batch');
+                        var batch=input3.value;
+                        var p3 = document.createElement('p');  
+                        p3.textContent = '商品生产批次:' + batch;  
+                        form.appendChild(p3);  
+                        
+                        var input4 = document.getElementById('date');
+                        var date=input4.value;
+                        var p4 = document.createElement('p');  
+                        p4.textContent = '商品有效期:' + date;  
+                        form.appendChild(p4);  
+                        
+                        var p5 = document.createElement('p'); 
+                        var option1 = document.getElementById('option1');
+                        var option2 = document.getElementById('option2');
+                        if (option1.checked){
+                            p5.textContent = '商品是否为处方药:是'     
+                        }
+                        if (option2.checked){
+                            p5.textContent = '商品是否为处方药:否'     
+                        }
+                        form.appendChild(p5); 
+                        
+                        var input5 = document.getElementById('price');
+                        var price=input5.value;
+                        var p6 = document.createElement('p');  
+                        p6.textContent = '商品价格:' + price;  
+                        form.appendChild(p6);  
+                        
+                        var button1 = document.createElement('input');  
+                        button1.type = 'button';  
+                        button1.value = '修改';  
+                        button1.onclick = function() {  
+                            showDialog('div4');  
+                        };; 
+                        form.appendChild(button1);  
+                        
+                        var button2 = document.createElement('input');  
+                        button2.type = 'button';  
+                        button2.value = '下架';  
+                        button2.onclick  = function() {  
+                            hide('link4', 'div4');  
+                        };
+                        form.appendChild(button2);  
+                        
+                        discribeDiv.appendChild(form);  
+                        newDiv.appendChild(discribeDiv);  
+                        
+                        document.getElementById('content').appendChild(newDiv); 
+                        
+                        alert("上架成功");
+                    }
+                    function showDialog(divId){
+                        var dialog = document.getElementById('dialog');
+                        dialog.style.display='block';
+                        var div = document.getElementById(divId); 
+                        var pElements = div.querySelectorAll('p'); 
+                        var name =pElements[0].innerText.split(':')[1];
+                        var description = pElements[1].innerText.split(':')[1];  
+                        var batch = pElements[2].innerText.split(':')[1];  
+                        var date = pElements[3].innerText.split(':')[1];
+                        var isPrescription = pElements[4].innerText.split(':')[1];
+                        var price = pElements[5].innerText.split(':')[1];
+
+                        document.getElementById('name2').value = name;  
+                        document.getElementById('description2').value = description;  
+                        document.getElementById('batch2').value = batch;  
+                        document.getElementById('date2').value = date;  
+                        document.getElementById('price2').value = price;  
+                        if (isPrescription === '是') {  
+                            document.getElementById('option3').checked = true;  
+                        } else {  
+                            document.getElementById('option4').checked = true;  
+                        }  
+                        
+                        var button = document.getElementById('button');
+                        button.onclick = function() {  
+                            alter(divId);  
+                        };
+
+                    }
+                    function cancel(){
+                        var dialog = document.getElementById('dialog');
+                        dialog.style.display='none';
+                    }
+                    function alter(divId){
+                        var dialog = document.getElementById('dialog');
+                        dialog.style.display='none';
+
+                        var div = document.getElementById(divId); 
+                        var form = div.querySelector('form');
+                        var name = document.getElementById("name2").value;  
+                        var description = document.getElementById("description2").value;  
+                        var batch = document.getElementById("batch2").value;  
+                        var date = document.getElementById("date2").value;  
+                        var option1 = document.getElementById('option3');
+                        var option2 = document.getElementById('option4');  
+                        var price = document.getElementById("price2").value;  
+                        form.querySelector('p:nth-child(1)').textContent = "商品名称:" + name;  
+                        form.querySelector('p:nth-child(2)').textContent = "商品描述:" + description;  
+                        form.querySelector('p:nth-child(3)').textContent = "商品生产批次:" + batch;  
+                        form.querySelector('p:nth-child(4)').textContent = "商品有效期:" + date; 
+                        if(option1.checked){
+                            form.querySelector('p:nth-child(5)').textContent = "商品是否为处方药:是" ; 
+                        }
+                        if(option2.checked){
+                            form.querySelector('p:nth-child(5)').textContent = "商品是否为处方药:否" ; 
+                        } 
+                        form.querySelector('p:nth-child(6)').textContent = "商品价格:" + price;  
+                    }
+                </script> 
             </div>
             <div class="sidebar"></div>
             <div class="footer">
